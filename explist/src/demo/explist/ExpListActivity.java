@@ -3,6 +3,7 @@ package demo.explist;
 import java.util.ArrayList;
 import java.util.List;
 
+import demo.explist.classes.CatParser;
 import demo.explist.classes.DomParser;
 import demo.explist.classes.MainGroup;
 import android.app.Activity;
@@ -70,7 +71,7 @@ public class ExpListActivity extends Activity implements Runnable {
 
         // Set this blank adapter to the list view
         
-        DomParser dp = new DomParser(getApplicationContext());
+        CatParser dp = new CatParser(getApplicationContext());
     	lsGroup = dp.parse();
         adapter = new ExpListAdapter(this, lsGroup);
         listView.setAdapter(adapter);

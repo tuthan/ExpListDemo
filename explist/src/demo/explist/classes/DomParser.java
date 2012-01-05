@@ -3,7 +3,10 @@ package demo.explist.classes;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +17,11 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import demo.explist.R;
+
 import android.content.Context;
 import android.os.Environment;
+import android.util.Log;
 
 public class DomParser {
 
@@ -90,18 +96,64 @@ public class DomParser {
 		return results;
 	}
 	
-	protected InputStream getInput(){
+	protected InputStream getInput() throws IOException{
 		FileInputStream fl = null;
 		File sdcard = Environment.getExternalStorageDirectory();
 		File file = new File(sdcard, "categories.xml");
+		if (!file.exists()){
+			InputStream xml = mContext.getResources().openRawResource(R.raw.categories);
+			OutputStream out = new FileOutputStream(file);
+			// Transfer bytes from in to out
+			byte[] buf = new byte[1024];
+			int len;
+			try {
+			    // A little more explicit
+			    while ( (len = xml.read(buf, 0, buf.length)) != -1){
+			         out.write(buf, 0, len);
+			    }
+			} 			
+			finally {
+			    // Ensure the Streams are closed:
+			    xml.close();
+			    out.close();
+			}
+			
+			file = new File(sdcard, "categories.xml");
+
+		}
 		try {
 			fl = new FileInputStream(file);
+			
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return fl;
 		
+	}
+	
+	private boolean	checkExternalMedia(){
+		boolean mExternalStorageAvailable = false;
+		boolean mExternalStorageWriteable = false;
+		String state = Environment.getExternalStorageState();
+
+		if (Environment.MEDIA_MOUNTED.equals(state)) {
+		    // We can read and write the media
+		    mExternalStorageAvailable = mExternalStorageWriteable = true;
+		} else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+		    // We can only read the media
+		    mExternalStorageAvailable = true;
+		    mExternalStorageWriteable = false;
+		} else {
+		    // Something else is wrong. It may be one of many other states,but all we need
+		    //  to know is we can neither read nor write
+			Log.i("Stat","State="+state+" Not good");
+		    mExternalStorageAvailable = mExternalStorageWriteable = false;
+		}
+
+		Log.i("Stat","Available="+mExternalStorageAvailable+"Writeable="+mExternalStorageWriteable+" State"+state);
+		return (mExternalStorageAvailable && mExternalStorageWriteable);
 	}
 }
