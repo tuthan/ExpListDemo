@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, ExplistActivity!</string>
+    <string name="app_name">Explist</string>
+    <string name="favourite">Danh sách ưa thích</string>
+    <integer-array name="groupID">
+        <item >001</item>
+    </integer-array>
+    <string-array name="mainGroup">
+        <item >Education</item>
+        <item >Bank</item>
+        <item >Hotel</item>
+        <item >Food</item>
+        <item >Transport</item>
+        <item >Entertainment</item>
+        <item >Favorite</item>
+    </string-array>
+	<array name="mainGroupImg">
+        <item>@drawable/ic_mainmenu_edu</item>
+        <item>@drawable/ic_mainmenu_bank</item>
+        <item>@drawable/ic_mainmenu_hotel</item>
+        <item>@drawable/ic_mainmenu_restaurant</item>
+        <item>@drawable/ic_mainmenu_transport</item>
+        <item>@drawable/ic_mainmenu_entertain</item>
+        <item>@drawable/ic_mainmenu_favorite</item>
+    </array>
+        
+</resources>

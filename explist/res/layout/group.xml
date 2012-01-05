@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="315dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="307dp"
+        android:layout_height="60dp" android:background="@drawable/ic_mainmenu_panel" android:layout_marginBottom="3dp" android:layout_gravity="center_horizontal" android:layout_marginTop="5dp">
+
+        <ImageView
+            android:id="@+id/iv_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical" android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/tv_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Giáo dục"
+            android:textAppearance="?android:attr/textAppearanceLarge" android:layout_gravity="center_vertical" android:layout_marginLeft="10dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
